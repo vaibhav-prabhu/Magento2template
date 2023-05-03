@@ -4,25 +4,32 @@ on:
   workflow_dispatch:
 
 jobs:
-  magento2-build:
+ static:
+    name: M2 Coding Standard
     runs-on: ubuntu-latest
-    name: 'm2 tests & build'      
     steps:
-    - uses: actions/checkout@v3
-    - name: 'install fresh magento repo'
-      if: ${{true}}
-      uses: MAD-I-T/magento-actions@v3.20
-      env:
-        COMPOSER_AUTH: ${{secrets.COMPOSER_AUTH}}
-      with:
-        process: 'install-magento'
-        magento_version: 2.4.3
-        no_push: 1
-      
-    - name: phpsniffer
-      uses: tinovyatkin/action-php-codesniffer@v1
-      with:
-          files: "**"
-          scope: files
-          phpcs_path: project-community-edition/vendor/bin/phpcs
-          standard: project-community-edition/vendor/magento/magento-coding-standard/Magento2/ruleset.xml
+      - uses: actions/checkout@v2
+      - uses: extdn/github-actions-m2/magento-coding-standard@master
+
+  run-linters:
+    name: Run linters
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      # ESLint and Prettier must be in `package.json`
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          eslint: true
+          prettier: true

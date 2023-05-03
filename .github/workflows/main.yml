@@ -30,8 +30,4 @@ jobs:
         run: npm ci
 
       - name: Run linters
-        uses: sibiraj-s/action-eslint@v2
-        with:
-          eslint-args: '--ignore-path=.gitignore --quiet'
-          extensions: 'js,jsx,ts,tsx'
-          annotations: true
+        uses: stefanoeb/eslint-action@1.0.2

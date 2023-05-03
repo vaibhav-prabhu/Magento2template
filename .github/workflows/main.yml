@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
- static:
+  static:
     name: M2 Coding Standard
     runs-on: ubuntu-latest
     steps:

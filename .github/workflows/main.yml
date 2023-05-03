@@ -17,6 +17,7 @@ jobs:
       with:
         process: 'install-magento'
         magento_version: 2.4.3
+        no_push: 1
       
     - name: phpsniffer
       uses: tinovyatkin/action-php-codesniffer@v1

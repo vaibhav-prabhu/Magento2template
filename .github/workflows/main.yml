@@ -23,5 +23,5 @@ jobs:
       with:
           files: "**"
           scope: files
-          phpcs_path: vendor/bin/phpcs
-          standard: vendor/magento/magento-coding-standard/Magento2/ruleset.xml
+          phpcs_path: project-community-edition/vendor/bin/phpcs
+          standard: project-community-edition/vendor/magento/magento-coding-standard/Magento2/ruleset.xml

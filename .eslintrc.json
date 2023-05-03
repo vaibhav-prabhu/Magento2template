@@ -6,6 +6,15 @@
     },
     "extends": "google",
     "overrides": [
+        {
+            "files": [
+                "*.js",
+                "*.ts",
+                "*.jsx",
+                "*.tsx"
+            ],
+            "excludedFiles": "*.test.js"
+        }
     ],
     "parserOptions": {
         "ecmaVersion": "latest"

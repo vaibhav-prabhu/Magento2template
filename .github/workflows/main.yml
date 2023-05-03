@@ -1,28 +1,20 @@
-name: Test magento2 test demo
+name: m2-actions-test
 
 on:
   workflow_dispatch:
 
-
 jobs:
-  run-linters:
-    name: Run linters
+  magento2-build:
     runs-on: ubuntu-latest
-
+    name: 'm2 tests & build'      
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v2
-
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "7.4"
-          coverage: none
-          tools: phpcs
-
-      - name: Run linters
-        uses: wearerequired/lint-action@v2
-        with:
-          php_codesniffer: true
-          # Optional: Ignore warnings
-          php_codesniffer_args: "-n"
+    - uses: actions/checkout@v3
+    - name: 'install fresh magento repo'
+      if: ${{true}}
+      uses: MAD-I-T/magento-actions@v3.20
+      env:
+        COMPOSER_AUTH: ${{secrets.COMPOSER_AUTH}}
+      with:
+        process: 'install-magento'
+        magento_version: 2.4.3
+        no_push: 1

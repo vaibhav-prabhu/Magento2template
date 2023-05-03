@@ -13,7 +13,7 @@ jobs:
 
   run-linters:
     name: Run linters
-    needs: M2 Coding Standard
+    needs: static
     runs-on: ubuntu-latest
 
     steps:

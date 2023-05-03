@@ -18,3 +18,11 @@ jobs:
         process: 'install-magento'
         magento_version: 2.4.3
         no_push: 1
+      
+    - name: phpsniffer
+      uses: tinovyatkin/action-php-codesniffer@v1
+      with:
+          files: "**"
+          scope: files
+          phpcs_path: vendor/bin/phpcs
+          standard: vendor/magento/magento-coding-standard/Magento2/ruleset.xml

@@ -6,4 +6,4 @@ ComponentRegistrar::register(
     'Humcommerce_CompanyAccount',
     __DIR__
 );
-?>
+

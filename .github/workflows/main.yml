@@ -30,7 +30,7 @@ jobs:
       - name: Install Node.js dependencies
         run: |
           npm ci
-          .eslintrc.json /action/lib/.automation/
+          cp .eslintrc.json /action/lib/.automation/
 
       - name: Run linters
         uses: github/super-linter/slim@v5

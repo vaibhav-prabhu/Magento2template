@@ -25,7 +25,7 @@ jobs:
         name: Make a directory that may not exist.
         shell: bash
 
-      - run: composer create-project --repository-url="https://repo.magento.com/" "magento/project-community-edition:2.4.3" ${{ steps.setup-magento-compute-directory.outputs.MAGENTO_DIRECTORY }} --no-install
+      - run: composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition:2.4.3 ${{ steps.setup-magento-compute-directory.outputs.MAGENTO_DIRECTORY }} --no-install
         working-directory: magento
         shell: bash
         name: Create Magento Project

@@ -33,3 +33,4 @@ jobs:
         uses: tj-actions/eslint-changed-files@v18
         with:
           all_files: true
+          config_path: ".eslintrc.json"

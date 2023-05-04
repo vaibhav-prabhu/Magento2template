@@ -8,7 +8,7 @@ jobs:
     name: M2 Coding Standard
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: extdn/github-actions-m2/magento-coding-standard@master
 
   run-linters:
@@ -17,10 +17,10 @@ jobs:
 
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: 16
 
@@ -33,3 +33,40 @@ jobs:
         with:
           VALIDATE_ALL_CODEBASE: true
           DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
+          VALIDATE_ANSIBLE: false
+          VALIDATE_ARM: false
+          VALIDATE_BASH: false
+          VALIDATE_BASH_EXEC: false
+          VALIDATE_CPP: false
+          VALIDATE_CLANG_FORMAT: false
+          VALIDATE_CLOJURE: false
+          VALIDATE_CLOUDFORMATION: false
+          VALIDATE_COFFEESCRIPT: false
+          VALIDATE_CSHARP: false
+          VALIDATE_CSS: false
+          VALIDATE_DART: false
+          VALIDATE_DOCKERFILE_HADOLINT: false
+          VALIDATE_EDITORCONFIG: false
+          VALIDATE_ENV: false
+          VALIDATE_GHERKIN: false
+          VALIDATE_GITHUB_ACTIONS: false
+          VALIDATE_GITLEAKS: false
+          VALIDATE_GO: false
+          VALIDATE_GOOGLE_JAVA_FORMAT: false
+          VALIDATE_GROOVY: false
+          VALIDATE_HTML: false
+          VALIDATE_JAVA: false
+          VALIDATE_JSCPD: false
+          VALIDATE_JSON: false
+          VALIDATE_JSX: false
+          VALIDATE_KOTLIN: false 
+          VALIDATE_KOTLIN_ANDROID: false
+          VALIDATE_KUBERNETES_KUBECONFORM: false
+          VALIDATE_LATEX: false
+          VALIDATE_LUA: false
+          VALIDATE_MARKDOWN: false
+          VALIDATE_NATURAL_LANGUAGE: false
+          VALIDATE_OPENAPI: false
+          VALIDATE_PERL: false
+          

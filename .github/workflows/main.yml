@@ -24,6 +24,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Setup PHP with intl
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+
       - name: 'install fresh magento repo'
         uses: MAD-I-T/magento-actions@v3.21
         env:
@@ -34,5 +40,5 @@ jobs:
           magento_version: 2.4.3
           no_push: 1
 
-      - run: php7.4 bin/magento sample:data:deploy
+      - run: php bin/magento sample:data:deploy
         working-directory: magento

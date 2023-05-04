@@ -21,15 +21,15 @@ jobs:
         uses: actions/checkout@v3
 
       - name: creating composer
-        run: docker exec magento2 mkdir /app/code/
+        run: docker exec magento2 ls  app/
 
-      - name: adding auth json
-        run: docker cp . magento2:/app/code/
+      # - name: adding auth json
+      #   run: docker cp . magento2:/app/code/
 
-      - name: install moonsoon
-        run: docker exec magento2 ls /app/
+      # - name: install moonsoon
+      #   run: docker exec magento2 ls /app/
 
-      - name: install moonsoonsdf
-        run: docker exec magento2 ls /app/code
+      # - name: install moonsoonsdf
+      #   run: docker exec magento2 ls /app/code
 
     

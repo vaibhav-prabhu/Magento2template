@@ -40,5 +40,5 @@ jobs:
           magento_version: 2.4.3
           no_push: 1
 
-      - run: php bin/magento sample:data:deploy
+      - run: php bin/magento deploy:mode:set developer && ls -lah
         working-directory: magento

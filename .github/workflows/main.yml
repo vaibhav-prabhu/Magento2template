@@ -22,10 +22,11 @@ jobs:
           - 9200:9200
         options: -e="discovery.type=single-node" --health-cmd="curl http://localhost:9200/_cluster/health"  --health-interval=10s --health-timeout=5s --health-retries=10
 
-    container:
-      image: phoenixmedia/magento2:2.4.5
+    container: ubuntu
+    services:
+      container_name:
+        image: phoenixmedia/magento2:2.4.5
+    
+
     steps:
-      - name: log ls
-        run: |
-          cd ..
-          ls -lah
+      - run: docker exec container_name ls -lah

@@ -30,7 +30,6 @@ jobs:
         run: npm ci
 
       - name: Run linters
-        uses: wearerequired/lint-action@v2
+        uses: tj-actions/eslint-changed-files@v18
         with:
-          eslint: true
-          prettier: true
+          all_files: true

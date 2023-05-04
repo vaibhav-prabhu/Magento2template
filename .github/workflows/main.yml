@@ -7,25 +7,31 @@ jobs:
   static:
     name: M2 Coding Standard
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: docker://mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: magento
+          MYSQL_DATABASE: magento
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+      elasticsearch:
+        image: docker://elasticsearch:7.17.0
+        ports:
+          - 9200:9200
+        options: -e="discovery.type=single-node" --health-cmd="curl http://localhost:9200/_cluster/health"  --health-interval=10s --health-timeout=5s --health-retries=10
+
     steps:
       - uses: actions/checkout@v3
-      - name: Set PHP Version
-        uses: shivammathur/setup-php@v2
+      - name: 'install fresh magento repo'
+        uses: MAD-I-T/magento-actions@v3.21
+        env:
+          COMPOSER_AUTH: ${{secrets.COMPOSER_AUTH}}
         with:
-          php-version: 7.4
+          process: 'install-magento'
+          magento_version: 2.4.3
+          no_push: 1
 
-      - run: |
-          MAGENTO_DIRECTORY="magento"
-          echo "MAGENTO_DIRECTORY=$MAGENTO_DIRECTORY" >> $GITHUB_OUTPUT
-        id: setup-magento-compute-directory
-        shell: bash
-
-      - run: | 
-          mkdir -p ${{ steps.setup-magento-compute-directory.outputs.MAGENTO_DIRECTORY }}
-        name: Make a directory that may not exist.
-        shell: bash
-
-      - run: composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition:2.4.3 ${{ steps.setup-magento-compute-directory.outputs.MAGENTO_DIRECTORY }} --no-install
+      - run: php bin/magento sample:data:deploy
         working-directory: magento
-        shell: bash
-        name: Create Magento Project

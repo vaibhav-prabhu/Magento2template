@@ -8,11 +8,13 @@ jobs:
     name: M2 Coding Standard
     runs-on: ubuntu-latest
 
-    container: ubuntu
     services:
       container_name:
         image: phoenixmedia/magento2:2.4.5
     
 
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+        
       - run: docker exec container_name ls -lah

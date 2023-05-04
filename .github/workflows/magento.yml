@@ -13,6 +13,8 @@ jobs:
       magento2:
         image: phoenixmedia/magento2:2.4.5
         options: --name magento2
+        volumes:
+        - ../:/app
 
     steps:
       - name: Check out Git repository

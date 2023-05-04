@@ -24,7 +24,7 @@ jobs:
         run: docker exec magento2 ls  /app/
 
       - name: creating composer3
-        run: docker cp /app/ magento2:app/
+        run: docker cp magento2:/app/ app/
 
       - name: creating composer
         run: docker exec magento2 ls  app/

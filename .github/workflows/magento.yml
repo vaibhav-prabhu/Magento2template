@@ -14,7 +14,7 @@ jobs:
         image: phoenixmedia/magento2:2.4.5
         options: --name magento2
         volumes:
-        - ./:/app
+        - ${{ github.workspace }}:/app
 
     steps:
       - name: Check out Git repository

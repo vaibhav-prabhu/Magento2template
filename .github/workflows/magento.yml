@@ -6,14 +6,17 @@ on:
 
 jobs:
 
-  services:
-    magento2:
-        image: phoenixmedia/magento2:2.4.5
-        options: --name magento2
-
   static:
     name: M2 Coding Standard
     runs-on: ubuntu-latest
+
+    services:
+
+      magento2:
+        image: phoenixmedia/magento2:2.4.5
+        options: --name magento2
+
+
     
     - name: creating composer
       run: docker exec magento2 mkdir /root/.composer
@@ -22,4 +25,4 @@ jobs:
       run: docker cp auth.json.sample magento2:/root/.composer/auth.json
 
     - name: install moonsoon
-      run: docker exec magento2 composer require monsoonconsulting/magento2-pwa
+      run: docker exec magento2 composer require 

@@ -7,16 +7,30 @@ jobs:
   static:
     name: M2 Coding Standard
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: extdn/github-actions-m2/magento-coding-standard@master
 
-    services:
-      container_name:
-        image: phoenixmedia/magento2:2.4.5
-        options: --name keycloak
+  run-linters:
+    name: Run linters
+    needs: M2 Coding Standard
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
+      - name: Check out Git repository
+        uses: actions/checkout@v2
 
-      - run: docker exec keycloak ls -lah
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
 
-      - run: docker exec keycloak composer require monsoonconsulting/magento2-pwa
+      # ESLint and Prettier must be in `package.json`
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Run linters
+        uses: github/super-linter@v5
+        with:
+          VALIDATE_ALL_CODEBASE: true
+          DEFAULT_BRANCH: main

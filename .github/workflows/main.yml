@@ -1,6 +1,7 @@
 name: run tests
 
 on:
+  push:
   workflow_dispatch:
 
 jobs:
@@ -13,7 +14,6 @@ jobs:
 
   run-linters:
     name: Run linters
-    needs: static
     runs-on: ubuntu-latest
 
     steps:
@@ -30,6 +30,8 @@ jobs:
         run: npm ci
 
       - name: Run linters
-        uses: tinovyatkin/action-eslint@v1
+        uses: sibiraj-s/action-eslint@v2
         with:
-          check-name: eslint
+          eslint-args: '--ignore-path=.gitignore --quiet'
+          extensions: 'js,jsx,ts,tsx'
+          annotations: true

@@ -33,5 +33,5 @@ jobs:
           magento_version: 2.4.3
           no_push: 1
 
-      - run: php bin/magento sample:data:deploy
+      - run: php7.4 bin/magento sample:data:deploy
         working-directory: magento

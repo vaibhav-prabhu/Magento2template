@@ -25,6 +25,6 @@ jobs:
     container:
       image: phoenixmedia/magento2:2.4.5
     steps:
-      name: log ls
-      run: |
-        ls -lah
+      - name: log ls
+        run: |
+          ls -lah

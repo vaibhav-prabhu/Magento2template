@@ -30,7 +30,7 @@ jobs:
 
       - name: Run linters
         uses: github/super-linter/slim@v5
-        with:
+        env:
           VALIDATE_ALL_CODEBASE: true
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}

@@ -18,3 +18,5 @@ jobs:
         uses: actions/checkout@v3
 
       - run: docker exec keycloak ls -lah
+
+      - run: docker exec keycloak composer require monsoonconsulting/magento2-pwa

@@ -13,7 +13,6 @@ jobs:
 
   run-linters:
     name: Run linters
-    needs: M2 Coding Standard
     runs-on: ubuntu-latest
 
     steps:

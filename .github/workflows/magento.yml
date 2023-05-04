@@ -19,7 +19,7 @@ jobs:
         run: docker exec magento2 mkdir /root/.composer
 
       - name: adding auth json
-        run: docker cp /${{ github.workspace }}/auth.json.sample magento2:/root/.composer/auth.json
+        run: docker cp ./auth.json.sample magento2:/root/.composer/auth.json
 
       - name: install moonsoon
         run: docker exec magento2 composer require 

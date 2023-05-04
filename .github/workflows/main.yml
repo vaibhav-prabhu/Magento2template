@@ -11,10 +11,10 @@ jobs:
     services:
       container_name:
         image: phoenixmedia/magento2:2.4.5
-    
+        options: --name keycloak
 
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-        
-      - run: docker exec container_name ls -lah
+
+      - run: docker exec keycloak ls -lah

@@ -29,6 +29,7 @@ jobs:
         env:
           COMPOSER_AUTH: ${{secrets.COMPOSER_AUTH}}
         with:
+          php: 7.4
           process: 'install-magento'
           magento_version: 2.4.3
           no_push: 1

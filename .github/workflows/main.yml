@@ -10,9 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set PHP Version
-          uses: shivammathur/setup-php@v2
-          with:
-            php-version: 7.4
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
 
       - run: |
           MAGENTO_DIRECTORY="magento"

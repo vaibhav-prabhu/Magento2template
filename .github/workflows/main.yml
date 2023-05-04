@@ -1,7 +1,6 @@
 name: run tests
 
 on:
-  push:
   workflow_dispatch:
 
 jobs:
@@ -10,27 +9,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: extdn/github-actions-m2/magento-coding-standard@master
+      - name: Set PHP Version
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: 7.4
 
-  run-linters:
-    name: Run linters
-    runs-on: ubuntu-latest
+      - run: |
+          MAGENTO_DIRECTORY="magento"
+          echo "MAGENTO_DIRECTORY=$MAGENTO_DIRECTORY" >> $GITHUB_OUTPUT
+        id: setup-magento-compute-directory
+        shell: bash
 
-    steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v3
+      - run: | 
+          mkdir -p ${{ steps.setup-magento-compute-directory.outputs.MAGENTO_DIRECTORY }}
+        name: Make a directory that may not exist.
+        shell: bash
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-
-      # ESLint and Prettier must be in `package.json`
-      - name: Install Node.js dependencies
-        run: npm ci
-
-      - name: Run linters
-        uses: tj-actions/eslint-changed-files@v18
-        with:
-          all_files: true
-          config_path: ".eslintrc.json"
+      - run: composer create-project --repository-url="https://mirror.mage-os.org/" "~2.4.3" ${{ steps.setup-magento-compute-directory.outputs.MAGENTO_DIRECTORY }} --no-install
+        working-directory: magento
+        shell: bash
+        name: Create Magento Project

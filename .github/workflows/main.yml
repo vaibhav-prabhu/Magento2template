@@ -40,7 +40,6 @@ jobs:
           magento_version: 2.4.3
           elasticsearch: 1
           composer_version: 2
-          no_push: 1
 
       - run: php bin/magento deploy:mode:set developer
         working-directory: magento

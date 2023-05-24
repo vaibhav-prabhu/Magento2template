@@ -26,6 +26,4 @@ jobs:
             url: "https://cic-deploy.humdash.com/"
         - name: Show Response
           run: |
-            echo ${{ steps.myRequest.outputs.response }}
-            echo ${{ steps.myRequest.outputs.headers }}
             echo ${{ fromJson(steps.myRequest.outputs.response) }}

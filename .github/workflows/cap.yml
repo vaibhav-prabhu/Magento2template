@@ -19,4 +19,13 @@ jobs:
               cd /home/runcloud/webapps/cic_test/tools/cap
               echo "Running deployment script on the server"
               cap local deploy
-            
+        - name: Make Request
+          id: myRequest
+          uses: fjogeleit/http-request-action@v1
+          with:
+            url: "https://cic-deploy.humdash.com/"
+        - name: Show Response
+          run: |
+            echo ${{ steps.myRequest.outputs.response }}
+            echo ${{ steps.myRequest.outputs.headers }}
+            echo ${{ fromJson(steps.myRequest.outputs.response).field_you_want_to_access }}

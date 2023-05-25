@@ -15,7 +15,7 @@ jobs:
           with:
             url: "https://cic-deploy.humdash.com/"
         - name: Show Response
-          if: contains(steps.myRequest.outputs.response, 'Copyright © 2020 Cicero Mfg.') == false
+          if: contains(steps.myRequest.outputs.response, 'Copyright © 2020 Cicero Mfg. wrg') == false
           uses: appleboy/ssh-action@master
           with:
             host: 35.164.77.158

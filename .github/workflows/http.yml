@@ -16,4 +16,4 @@ jobs:
             url: "https://cic-deploy.humdash.com/"
         - name: Show Response
           run: |
-            echo ${{ steps.myRequest.outputs.response }}
+            echo ${{ contains(steps.myRequest.outputs.response, 'Copyright © 2020 Cicero Mfg.') }}

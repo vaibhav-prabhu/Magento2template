@@ -1,0 +1,19 @@
+name: http_status
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  status_job:
+      name: Status
+      runs-on: ubuntu-latest
+      steps:
+        - name: Make Request
+          id: myRequest
+          uses: fjogeleit/http-request-action@v1
+          with:
+            url: "https://cic-deploy.humdash.com/"
+        - name: Show Response
+          run: |
+            echo ${{ fromJson(steps.myRequest.outputs.response).field_you_want_to_access }}

@@ -11,19 +11,11 @@ jobs:
         - name: SSH into the machine and run some commands
           uses: appleboy/ssh-action@master
           with:
-            host: 35.164.77.158
+            host: 3.217.124.81
             username: runcloud
             key:  ${{ secrets.SH_SSH }}
             port: 22
             script: |
-              cd /home/runcloud/webapps/cic_test/tools/cap
+              cd /home/sigodev/webapps/sigodev/cap
               echo "Running deployment script on the server"
               cap local deploy
-        - name: Make Request
-          id: myRequest
-          uses: fjogeleit/http-request-action@v1
-          with:
-            url: "https://cic-deploy.humdash.com/"
-        - name: Show Response
-          run: |
-            echo ${{ fromJson(steps.myRequest.outputs.response).status_code }}

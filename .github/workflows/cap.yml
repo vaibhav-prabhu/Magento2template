@@ -1,11 +1,14 @@
 name: auto_deployment
 
 on:
-  workflow_dispatch:
+  pull_request:
+    types:
+      - closed
 
 jobs:
   deployment-job:
       name: Deploy
+      if: github.event.pull_request.merged == true
       runs-on: ubuntu-latest
       steps:
         - name: SSH into the machine and run some commands

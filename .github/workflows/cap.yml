@@ -1,24 +1,21 @@
 name: auto_deployment
 
 on:
-  pull_request:
-    types:
-      - closed
+  workflow_dispatch:
 
 jobs:
   deployment-job:
       name: Deploy
-      if: github.event.pull_request.merged == true
       runs-on: ubuntu-latest
       steps:
         - name: SSH into the machine and run some commands
           uses: appleboy/ssh-action@master
           with:
-            host: 3.217.124.81
+            host: 44.214.224.241
             username: sigodev
             key:  ${{ secrets.SH_SSH }}
             port: 22
             script: |
               cd /home/sigodev/webapps/sigodev/cap
               echo "Running deployment script on the server"
-              cap local deploy
+              echo "Test Complete"

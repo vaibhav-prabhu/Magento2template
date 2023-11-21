@@ -18,4 +18,4 @@ jobs:
             script: |
               cd /home/couture/capistrano
               echo "Running deployment script on the server"
-              cap staging deploy
+              cap -T

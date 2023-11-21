@@ -2,16 +2,10 @@ name: hyva-stage-deploy
 
 on:
   workflow_dispatch:
-  pull_request:
-    branches:
-      - hyva-stage
-    types:
-      - closed
 
 jobs:
   deployment-job:
       name: Hyva Stage Deploy
-      if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
       runs-on: ubuntu-latest
       steps:
         - name: SSH into the machine and run some commands

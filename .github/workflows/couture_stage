@@ -1,0 +1,27 @@
+name: hyva-stage-deploy
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - hyva-stage
+    types:
+      - closed
+
+jobs:
+  deployment-job:
+      name: Hyva Stage Deploy
+      if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+      runs-on: ubuntu-latest
+      steps:
+        - name: SSH into the machine and run some commands
+          uses: appleboy/ssh-action@master
+          with:
+            host: 157.241.9.42
+            username: couture
+            key:  ${{ secrets.SH_SSH }}
+            port: 22
+            script: |
+              cd /home/couture/capistrano
+              echo "Running deployment script on the server"
+              cap staging deploy

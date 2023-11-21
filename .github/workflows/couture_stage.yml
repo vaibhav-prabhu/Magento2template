@@ -16,6 +16,7 @@ jobs:
             key:  ${{ secrets.SH_SSH }}
             port: 22
             script: |
-              cd /home/couture/capistrano
+              cd capistrano
               echo "Running deployment script on the server"
-              cap -T
+              whoami
+              pwd

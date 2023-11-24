@@ -20,4 +20,5 @@ jobs:
               echo "Running deployment script on the server"
               whoami
               pwd
+              ./deployment.sh
               cap --version

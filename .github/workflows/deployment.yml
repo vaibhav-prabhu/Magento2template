@@ -16,9 +16,9 @@ jobs:
             key:  ${{ secrets.SH_SSH }}
             port: 22
             script: |
+              ./deployment.sh
               cd capistrano
               echo "Running deployment script on the server"
               whoami
               pwd
-              ./deployment.sh
               cap --version

@@ -11,8 +11,8 @@ jobs:
         - name: SSH into the machine and run some commands
           uses: appleboy/ssh-action@master
           with:
-            host: 52.66.189.157
-            username: dev
+            host: 15.207.108.125
+            username: build
             key:  ${{ secrets.SH_SSH }}
             port: 22
             script: |
@@ -24,5 +24,4 @@ jobs:
               echo "Running deployment script on the server"
               whoami
               pwd
-              ruby --version
-              cap --version
+              cap develop deploy

@@ -11,12 +11,12 @@ jobs:
         - name: SSH into the machine and run some commands
           uses: appleboy/ssh-action@master
           with:
-            host: 157.241.9.42
-            username: couture
+            host: 44.214.224.241
+            username: sigodev
             key:  ${{ secrets.SH_SSH }}
             port: 22
             script: |
-              cd capistrano
+              cd htdocs/dev-sigosigns.humdash.com/cap
               echo "Running deployment script on the server"
               whoami
               pwd

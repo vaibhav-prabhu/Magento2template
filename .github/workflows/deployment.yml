@@ -11,17 +11,14 @@ jobs:
         - name: SSH into the machine and run some commands
           uses: appleboy/ssh-action@master
           with:
-            host: 15.207.108.125
-            username: build
-            key:  ${{ secrets.SH_SSH }}
+            host: 3.221.225.1
+            username:  bannershop
+            key:  ${{ secrets.SH_SSH_BLD }}
             port: 22
             script: |
               export PATH="$HOME/.rbenv/bin:$PATH"
               eval "$(rbenv init -)"
               rbenv global 3.2.2
-              ./deployment.sh
-              cd capistrano
+              cd /home/bannershop/build/bannershopau
               echo "Running deployment script on the server"
-              whoami
-              pwd
               cap develop deploy

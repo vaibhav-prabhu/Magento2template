@@ -21,7 +21,7 @@ jobs:
       
       steps:
       	- name: Set Default Value if Not Provided
-      	  run: echo "custom_branch=${{ github.event.inputs.current-branch || '' }}"
+      	  run: echo "::set-env name=custom_branch::${{ github.event.inputs.current-branch || '' }}"
 
         - name: SSH into the machine and run some commands
           uses: appleboy/ssh-action@master

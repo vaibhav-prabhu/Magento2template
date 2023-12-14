@@ -13,6 +13,9 @@ on:
     types:
       - closed
 
+env:
+  CUSTOM_BRANCH: ${{ github.event.inputs.current-branch  || '' }}
+
 jobs:
   deployment-job:
       name: Hyva Stage Deploy
@@ -20,9 +23,6 @@ jobs:
       runs-on: ubuntu-latest
       
       steps:
-      	- name: Set Default Value if Not Provided
-      	  run: echo "::set-env name=custom_branch::${{ github.event.inputs.current-branch || '' }}"
-
         - name: SSH into the machine and run some commands
           uses: appleboy/ssh-action@master
           with:
@@ -33,4 +33,4 @@ jobs:
             script: |
               cd /home/sigosigns/build/capistrano
               echo "Running deployment script on the server"
-              CUSTOM_BRANCH=${custom_branch} cap staging deploy
+              CUSTOM_BRANCH=$CUSTOM_BRANCH cap staging deploy

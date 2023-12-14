@@ -6,15 +6,13 @@ on:
       current-branch:
         description: "Please give a custom branch to deploy"
         required: false
+        default: ''
   
   pull_request:
     branches:
       - hyva-stage
     types:
       - closed
-
-env:
-  CUSTOM_BRANCH: ${{ github.event.inputs.current-branch  || '' }}
 
 jobs:
   deployment-job:
@@ -36,5 +34,5 @@ jobs:
               rbenv global 3.2.2
               cd /home/sigosigns/build/capistrano
               echo "Running deployment script on the server"
-              echo $CUSTOM_BRANCH
-              CUSTOM_BRANCH=$CUSTOM_BRANCH cap staging deploy
+              echo ${{ github.event.inputs.current-branch }}
+              CUSTOM_BRANCH=${{ github.event.inputs.current-branch }} cap staging deploy

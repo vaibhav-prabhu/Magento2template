@@ -1,0 +1,37 @@
+name: hyva-stage-deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      current-branch:
+        description: "Please give a custom branch to deploy"
+        required: false
+  
+  pull_request:
+    branches:
+      - hyva-stage
+    types:
+      - closed
+
+jobs:
+  deployment-job:
+      name: Hyva Stage Deploy
+      if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+      runs-on: ubuntu-latest
+      
+      steps:
+      	- name: Set Default Value if Not Provided
+      	  run: |
+       	    echo "custom_branch=${{ github.event.inputs.current-branch || '' }}" >> $GITHUB_ENV
+
+        - name: SSH into the machine and run some commands
+          uses: appleboy/ssh-action@master
+          with:
+            host: 3.221.225.1
+            username: sigosigns
+            key:  ${{ secrets.SH_SSH_BLD }}
+            port: 22
+            script: |
+              cd /home/sigosigns/build/capistrano
+              echo "Running deployment script on the server"
+              CUSTOM_BRANCH=${custom_branch} cap staging deploy

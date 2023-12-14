@@ -1,4 +1,4 @@
-name: hyva-stage-deploy
+name: hyva-stage-deploy-test
 
 on:
   workflow_dispatch:
@@ -21,8 +21,7 @@ jobs:
       
       steps:
       	- name: Set Default Value if Not Provided
-      	  run: |
-       	    echo "custom_branch=${{ github.event.inputs.current-branch || '' }}" >> $GITHUB_ENV
+      	  run: echo "custom_branch=${{ github.event.inputs.current-branch || '' }}" >> $GITHUB_ENV
 
         - name: SSH into the machine and run some commands
           uses: appleboy/ssh-action@master

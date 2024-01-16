@@ -1,0 +1,23 @@
+name: dev_deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deployment-job:
+      name: Deploy
+      runs-on: ubuntu-latest
+      steps:
+        - name: SSH into the machine and run some commands
+          uses: appleboy/ssh-action@master
+          with:
+            host: 13.58.129.52
+            username: devcicero
+            key:  ${{ secrets.SH_SSH_BLD }}
+            port: 22
+            script: |
+              export PATH="$HOME/.rbenv/bin:$PATH"
+              eval "$(rbenv init -)"
+              rbenv global 3.2.2
+              cd /home/devcicero/htdocs/dev-cic.humdash.com/cap
+              cap local deploy

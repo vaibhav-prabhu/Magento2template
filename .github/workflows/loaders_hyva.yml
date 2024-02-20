@@ -1,4 +1,4 @@
-name: hyva_dev_deploy
+name: hyva_dev_deploy_loaders
 
 on:
   workflow_dispatch:

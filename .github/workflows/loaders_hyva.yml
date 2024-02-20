@@ -1,0 +1,23 @@
+name: hyva_dev_deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deployment-job:
+      name: Dev Deploy
+      runs-on: ubuntu-latest
+      steps:
+        - name: SSH into the machine and run some commands
+          uses: appleboy/ssh-action@master
+          with:
+            host: 3.221.225.1
+            username: loaderspartssource
+            key:  ${{ secrets.SH_SSH_BLD }}
+            port: 22
+            script: |
+              export PATH="$HOME/.rbenv/bin:$PATH"
+              eval "$(rbenv init -)"
+              rbenv global 3.2.2
+              cd /home/loaderspartssource/build/capistrano
+              cap develop deploy

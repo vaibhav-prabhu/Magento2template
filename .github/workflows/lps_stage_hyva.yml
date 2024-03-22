@@ -1,0 +1,20 @@
+name: Lps_stage_deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deployment-job:
+      name: Stage Deploy
+      runs-on: ubuntu-latest
+      steps:
+        - name: SSH into the machine and run some commands
+          uses: appleboy/ssh-action@master
+          with:
+            host: 1f1cced08b.nxcli.net
+            username: a9c6df5b_10
+            key:  ${{ secrets.SH_SSH_BLD }}
+            port: 22
+            script: |
+              cd /home/a9c6df5b/stage.loaderpartsource.com/html
+              bash magento_deployment_script.sh

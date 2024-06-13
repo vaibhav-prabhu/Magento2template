@@ -16,4 +16,4 @@ jobs:
             key: ${{ secrets.SH_SSH_BLD }}
             port: 22
             script: |
-              sh sigosigns_docs_deployment.sh
+              sh /home/sigosigns/build/sigosigns_docs_deployment.sh

@@ -1,0 +1,19 @@
+name: sigosigns_docs_deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deployment-job:
+      name: Sigosigns_Deployment
+      runs-on: ubuntu-latest
+      steps:
+        - name: SSH into the machine and run some commands
+          uses: appleboy/ssh-action@master
+          with:
+            host: 3.221.225.1
+            username: sigosigns
+            key: ${{ secrets.SH_SSH_BLD }}
+            port: 22
+            script: |
+              sh sigosigns_docs_deployment.sh

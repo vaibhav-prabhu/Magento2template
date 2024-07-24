@@ -34,4 +34,4 @@ jobs:
               rbenv global 3.2.2
               cd /home/sigosigns/build/capistrano
               echo "Running deployment script on the server with " ${{ github.event.inputs.current-branch }}
-              CUSTOM_BRANCH=${{ github.event.inputs.current-branch }} cap staging deploy
+              CUSTOM_BRANCH=${{ github.event.inputs.current-branch }} nohup cap staging deploy &
